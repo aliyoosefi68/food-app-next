@@ -5,6 +5,7 @@ import Card from "../modules/cards/Card";
 
 const Categories = ({ data }) => {
   const router = useRouter();
+  console.log(router);
 
   const [query, setQuery] = useState({ difficulty: "", time: "" });
   useEffect(() => {

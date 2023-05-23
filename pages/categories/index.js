@@ -1,5 +1,6 @@
 import Categories from "@/components/templates/Categories";
 import React from "react";
+import details from "../menu/[menuId]";
 
 const index = ({ data }) => {
   console.log(data);
@@ -7,16 +8,17 @@ const index = ({ data }) => {
 };
 
 export default index;
+
 export async function getServerSideProps(context) {
   const {
     query: { difficulty, time },
   } = context;
 
-  const res = await fetch("http://localhost:3001/data");
+  const res = await fetch(`${process.env.BASE_URL}/data`);
   const data = await res.json();
 
-  const filteredData = data.filter((item) => {
-    const difficultyResult = item.details.filter(
+  const filterData = data.filter((item) => {
+    const defficultyResult = item.details.filter(
       (detail) => detail.Difficulty && detail.Difficulty === difficulty
     );
 
@@ -31,9 +33,9 @@ export async function getServerSideProps(context) {
       }
     });
 
-    if (time && difficulty && timeResult.length && difficultyResult.length) {
+    if (time && difficulty && timeResult.length && defficultyResult.length) {
       return item;
-    } else if (!time && difficulty && difficultyResult.length) {
+    } else if (!time && difficulty && defficultyResult.length) {
       return item;
     } else if (time && !difficulty && timeResult.length) {
       return item;
@@ -41,6 +43,6 @@ export async function getServerSideProps(context) {
   });
 
   return {
-    props: { data: filteredData },
+    props: { data: filterData },
   };
 }

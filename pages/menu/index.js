@@ -8,7 +8,7 @@ const index = ({ data }) => {
 export default index;
 
 export async function getStaticProps() {
-  const response = await fetch("http://localhost:3001/data");
+  const response = await fetch(`${process.env.BASE_URL}/data`);
   const data = await response.json();
 
   return {
