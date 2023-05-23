@@ -1,11 +1,10 @@
 import DetailePage from "@/components/templates/DetailePage";
 import { useRouter } from "next/router";
-import React from "react";
 
 const details = ({ data }) => {
-  const router = useRouter();
+  const Router = useRouter();
 
-  if (router.isFallback) {
+  if (Router.isFallback) {
     return <h2>Loading page....</h2>;
   }
   return (
