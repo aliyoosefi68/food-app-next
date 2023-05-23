@@ -1,6 +1,5 @@
 import Categories from "@/components/templates/Categories";
 import React from "react";
-import details from "../menu/[menuId]";
 
 const index = ({ data }) => {
   console.log(data);
